@@ -17,6 +17,7 @@ export type AppNavItem = {
   href: string;
   icon: LucideIcon;
   match?: (pathname: string) => boolean;
+  variant?: "primary-action" | "utility";
 };
 
 export const primaryNavItems: AppNavItem[] = [
@@ -25,6 +26,11 @@ export const primaryNavItems: AppNavItem[] = [
     href: "/dashboard",
     icon: Home,
     match: (pathname) => pathname === "/dashboard",
+  },
+  {
+    label: "Life",
+    href: "/dashboard/life",
+    icon: Heart,
   },
   {
     label: "Calendar",
@@ -56,11 +62,6 @@ export const primaryNavItems: AppNavItem[] = [
     href: "/dashboard/projects",
     icon: Folder,
   },
-  {
-    label: "Health",
-    href: "/dashboard/health",
-    icon: Heart,
-  },
 ];
 
 export const utilityNavItems: AppNavItem[] = [
@@ -68,10 +69,12 @@ export const utilityNavItems: AppNavItem[] = [
     label: "Create",
     href: "/dashboard/create",
     icon: Plus,
+    variant: "primary-action",
   },
   {
     label: "Settings",
     href: "/dashboard/settings",
     icon: Settings,
+    variant: "utility",
   },
 ];

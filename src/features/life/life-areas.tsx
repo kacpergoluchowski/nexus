@@ -1,4 +1,4 @@
-import { Plus } from "lucide-react";
+import { ChevronRight, Plus } from "lucide-react";
 import { lifeAreas } from "./life-data";
 import type { CSSProperties } from "react";
 import type { LifeArea } from "./life-data";
@@ -71,15 +71,24 @@ function MobileAddLifeAreaCard() {
 
 function DesktopLifeAreaRow({ area }: { area: LifeArea }) {
   return (
-    <article className="group flex items-center gap-2 rounded-[13px] px-2 py-1 transition-colors duration-200 hover:bg-white/40">
+    <article className="group flex items-center gap-2.5 rounded-[13px] px-2 py-1 transition-colors duration-200 hover:bg-white/40">
       <LifeAreaIcon area={area} />
       <div className="min-w-0 flex-1">
-        <div className="flex items-center justify-between gap-3">
-          <h3 className="truncate text-[0.76rem] font-normal text-[#070b22]">{area.label}</h3>
-          <span className="text-[0.7rem] font-normal tabular-nums text-[#68708c]">{area.progress}%</span>
-        </div>
-        <div className="mt-1">
-          <ProgressBar area={area} />
+        <h3 className="truncate text-[0.76rem] font-normal text-[#070b22]">{area.label}</h3>
+        <div className="mt-0.5 flex items-center gap-2.5">
+          <div className="min-w-0 flex-1">
+            <ProgressBar area={area} />
+          </div>
+          <span className="w-7 text-right text-[0.7rem] font-normal tabular-nums text-[#68708c]">
+            {area.progress}%
+          </span>
+          <button
+            type="button"
+            aria-label={`Open ${area.label} life area`}
+            className="grid size-5 shrink-0 place-items-center rounded-full text-[#273253]/78 transition-colors hover:bg-white/46 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >
+            <ChevronRight aria-hidden="true" className="size-3.5" strokeWidth={1.8} />
+          </button>
         </div>
       </div>
     </article>
@@ -90,13 +99,13 @@ export function LifeAreas() {
   return (
     <section
       aria-labelledby="life-areas-title"
-      className="mt-5 [font-family:-apple-system,BlinkMacSystemFont,'SF_Pro_Text','SF_Pro_Display',var(--font-geist-sans),system-ui,sans-serif] lg:mt-7 lg:w-[21.5rem] lg:rounded-[22px] lg:border lg:border-white/54 lg:bg-white/34 lg:p-3 lg:shadow-[0_18px_56px_rgba(43,50,93,0.075),inset_0_1px_0_rgba(255,255,255,0.84)] lg:backdrop-blur-[26px] 2xl:w-full"
+      className="mt-5 [font-family:-apple-system,BlinkMacSystemFont,'SF_Pro_Text','SF_Pro_Display',var(--font-geist-sans),system-ui,sans-serif] lg:mt-7 lg:w-[21.5rem] lg:rounded-[22px] lg:border lg:border-white/54 lg:bg-white/34 lg:px-5 lg:py-2.5 lg:shadow-[0_18px_56px_rgba(43,50,93,0.075),inset_0_1px_0_rgba(255,255,255,0.84)] lg:backdrop-blur-[26px]"
     >
       <header className="hidden items-center justify-between gap-4 lg:flex">
         <h2 id="life-areas-title" className="text-[0.95rem] font-normal text-[#070b22]">
           Life Areas
         </h2>
-        <button className="rounded-full px-2 py-1 text-[0.74rem] font-normal text-accent/85 transition-colors hover:bg-white/42 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+        <button className="rounded-full px-2 py-1 text-[0.9rem] font-black text-[#5b35ff] transition-colors hover:bg-white/42 hover:text-[#4727e8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
           Edit
         </button>
       </header>
@@ -108,14 +117,14 @@ export function LifeAreas() {
         <MobileAddLifeAreaCard />
       </div>
 
-      <div className="mt-3 hidden space-y-1 lg:block">
+      <div className="mt-2 hidden space-y-0.5 lg:block">
         {lifeAreas.map((area) => (
           <DesktopLifeAreaRow key={area.label} area={area} />
         ))}
       </div>
 
-      <button className="mt-3 hidden h-6 w-full items-center justify-center gap-1.5 rounded-full text-[0.74rem] font-normal text-accent/90 transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent lg:flex">
-        <Plus aria-hidden="true" className="size-3.5" strokeWidth={1.9} />
+      <button className="mt-2 hidden h-8 w-full items-center justify-center gap-2 rounded-full text-[0.95rem] font-black text-[#5b35ff] transition-colors hover:text-[#4727e8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent lg:flex">
+        <Plus aria-hidden="true" className="size-[1.05rem]" strokeWidth={2.8} />
         Add Life Area
       </button>
     </section>
